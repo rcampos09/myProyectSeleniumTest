@@ -1,5 +1,10 @@
-/Users/rcampos/eclipse-workspace/myProyect/src/test/java/com/falabella/test/cl/T1.java
-/Users/rcampos/eclipse-workspace/myProyect/src/test/java/com/falabella/test/cl/T2.java
-/Users/rcampos/eclipse-workspace/myProyect/src/test/java/com/falabella/pages/cl/HomePage.java
-/Users/rcampos/eclipse-workspace/myProyect/src/test/java/com/seleniumTest/BaseConfig.java
-/Users/rcampos/eclipse-workspace/myProyect/src/test/java/com/falabella/pages/cl/PDPPage.java
+/Users/rcampos/Documents/Proyecto/myProyectSeleniumTest/src/test/java/com/conexion/Connection.java
+/Users/rcampos/Documents/Proyecto/myProyectSeleniumTest/src/test/java/com/entities/Product.java
+/Users/rcampos/Documents/Proyecto/myProyectSeleniumTest/src/test/java/com/seleniumTest/BaseConfig.java
+/Users/rcampos/Documents/Proyecto/myProyectSeleniumTest/src/test/java/com/dataprovider/Falacl.java
+/Users/rcampos/Documents/Proyecto/myProyectSeleniumTest/src/test/java/com/falabella/utils/DataFalabella.java
+/Users/rcampos/Documents/Proyecto/myProyectSeleniumTest/src/test/java/com/falabella/test/cl/T1.java
+/Users/rcampos/Documents/Proyecto/myProyectSeleniumTest/src/test/java/com/falabella/pages/cl/HomePage.java
+/Users/rcampos/Documents/Proyecto/myProyectSeleniumTest/src/test/java/com/falabella/utils/WaitWebDriver.java
+/Users/rcampos/Documents/Proyecto/myProyectSeleniumTest/src/test/java/com/falabella/pages/cl/PDPPage.java
+/Users/rcampos/Documents/Proyecto/myProyectSeleniumTest/src/test/java/com/falabella/test/cl/T2.java

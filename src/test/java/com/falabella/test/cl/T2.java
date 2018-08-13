@@ -13,6 +13,6 @@ public class T2 extends BaseConfig {
     HomePage homePage = new HomePage(driver);
     homePage.SearhSku("881271905");
     PDPPage pdpPage = new PDPPage(driver);
-    Assert.assertFalse(pdpPage.valid_PDP_Product(),"Div Product is not display");
+    Assert.assertTrue(pdpPage.valid_PDP_Product(),"Div Product is not display");
   }
 }
