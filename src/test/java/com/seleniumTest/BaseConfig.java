@@ -20,7 +20,7 @@ public class BaseConfig {
       browser.setCapability("enableVNC", true);
       browser.setCapability("sessionTimeout", 5);
       try {
-        driver = new RemoteWebDriver(URI.create("http://127.0.0.1:4444/wd/hub/").toURL(), browser);
+        driver = new RemoteWebDriver(URI.create("http://10.197.41.113:4444/wd/hub/").toURL(), browser);
         driver.manage().window().fullscreen();
         driver.get("https://www.falabella.com/falabella-cl/");
       } catch (MalformedURLException e) {
