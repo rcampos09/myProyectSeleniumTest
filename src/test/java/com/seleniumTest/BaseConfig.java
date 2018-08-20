@@ -18,7 +18,7 @@ public class BaseConfig {
       browser.setBrowserName("chrome");
       browser.setVersion("66.0");
       browser.setCapability("enableVNC", true);
-      browser.setCapability("sessionTimeout", 5);
+      //browser.setCapability("sessionTimeout", 5);
       try {
         driver = new RemoteWebDriver(URI.create("http://10.197.41.113:4444/wd/hub/").toURL(), browser);
         driver.manage().window().fullscreen();
