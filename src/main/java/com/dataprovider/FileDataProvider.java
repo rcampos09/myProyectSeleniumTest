@@ -27,7 +27,6 @@ public class FileDataProvider {
       return lines;
     }
   }
-
   /**
    * Read the content of a text file
    *
@@ -54,7 +53,7 @@ public class FileDataProvider {
    */
   public static Iterator<Object[]> asRawLines(String path, boolean randomly, int numberOfLines) {
     List<Object[]> data = new ArrayList<Object[]>();
-    readLinesFromFile(path, randomly, numberOfLines).forEach(t -> data.add(new Object[] {t}));
+    readLinesFromFile(path, randomly, numberOfLines).forEach(t-> data.add(new Object[] {t}));
 
     return data.iterator();
   }
@@ -92,7 +91,6 @@ public class FileDataProvider {
     for (int i=0; i < linesToExclude; i++) {
       iterator.next();
     }
-
     while (iterator.hasNext()) {
       String line = (String) iterator.next()[0];
       if (line.startsWith("#")) continue;
@@ -110,8 +108,6 @@ public class FileDataProvider {
         }
       }
     }
-
     return data;
   }
-  
 }
