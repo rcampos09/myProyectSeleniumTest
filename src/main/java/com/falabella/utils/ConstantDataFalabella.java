@@ -1,6 +1,6 @@
 package com.falabella.utils;
 
-public class DataFalabella {
+public class ConstantDataFalabella {
   
   /** Data User **/
   public static final String Address = "Juan Barros";
