@@ -11,16 +11,15 @@ public class BaseConfig {
 
   public RemoteWebDriver driver;
 
-  @BeforeMethod
+  @BeforeMethod 
   public RemoteWebDriver getDriver() throws Exception {
     if (driver == null) {
       DesiredCapabilities browser = new DesiredCapabilities();
       browser.setBrowserName("chrome");
       browser.setVersion("66.0");
       browser.setCapability("enableVNC", true);
-      browser.setCapability("sessionTimeout", 5);
       try {
-        driver = new RemoteWebDriver(URI.create("http://127.0.0.1:4444/wd/hub").toURL(), browser);
+        driver = new RemoteWebDriver(URI.create("http://172.17.0.2:4444/wd/hub").toURL(), browser);
         driver.manage().window().fullscreen();
         driver.get("https://www.falabella.com/falabella-cl/");
       } catch (MalformedURLException e) {
