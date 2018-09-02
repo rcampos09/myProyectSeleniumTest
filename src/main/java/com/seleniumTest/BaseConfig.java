@@ -4,14 +4,16 @@ import java.net.MalformedURLException;
 import java.net.URI;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.support.ui.Select;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Parameters;
 
 public class BaseConfig {
 
   public RemoteWebDriver driver;
 
-  @BeforeMethod 
+  @BeforeMethod
   public RemoteWebDriver getDriver() throws Exception {
     if (driver == null) {
       DesiredCapabilities browser = new DesiredCapabilities();
