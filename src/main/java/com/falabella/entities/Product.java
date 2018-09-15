@@ -1,4 +1,4 @@
-package com.entities;
+package com.falabella.entities;
 
 public class Product {
   private String sku;
