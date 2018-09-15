@@ -7,10 +7,12 @@ import com.falabella.dataprovider.IntegratedDataProvider;
 import com.falabella.entities.Product;
 import com.falabella.pages.cl.HomePage;
 import com.falabella.pages.cl.PDPPage;
+import io.qameta.allure.Description;
 
 public class T1 extends BaseConfig {
 
   @Test(dataProvider = "ProductFalabella", dataProviderClass = IntegratedDataProvider.class)
+  @Description("Searh Product in Home")
   public void SearhProductInHomePage1(Product product) {
     HomePage homePage = new HomePage(driver);
     homePage.SearhSku(product.Sku());
