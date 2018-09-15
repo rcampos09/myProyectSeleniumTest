@@ -3,7 +3,6 @@ package com.falabella.config;
 import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URI;
-import javax.swing.text.Utilities;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
