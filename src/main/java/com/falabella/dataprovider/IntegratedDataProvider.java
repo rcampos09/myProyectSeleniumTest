@@ -1,9 +1,9 @@
-package com.dataprovider;
+package com.falabella.dataprovider;
 
 import org.testng.annotations.DataProvider;
-import com.entities.Product;
+import com.falabella.config.BaseConfig;
+import com.falabella.entities.Product;
 import com.google.gson.Gson;
-import com.seleniumTest.BaseConfig;
 
 public class IntegratedDataProvider extends BaseConfig {
 

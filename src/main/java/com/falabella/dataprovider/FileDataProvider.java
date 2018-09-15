@@ -1,4 +1,4 @@
-package com.dataprovider;
+package com.falabella.dataprovider;
 
 import java.io.IOException;
 import java.nio.file.Files;
