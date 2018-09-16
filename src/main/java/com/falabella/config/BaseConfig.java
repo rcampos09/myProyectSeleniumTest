@@ -1,8 +1,12 @@
 package com.falabella.config;
 
 import java.io.File;
+import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URI;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -13,6 +17,7 @@ import org.testng.IHookCallBack;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import io.qameta.allure.Allure;
 import io.qameta.allure.Attachment;
 
 public class BaseConfig {
@@ -66,6 +71,12 @@ public class BaseConfig {
         FileUtils.copyFile(source, new File("./Screenshots/" + result.getName() + ".png"));
         this.saveScreenshot(result.getName(), driver);
         System.out.println("Screenshot taken");
+        
+        Allure.addAttachment("My attachment", "My attachment content");
+        Path content = Paths.get("path-to-my-attachment-contnet");
+        try (InputStream is = Files.newInputStream(content)) {
+            Allure.addAttachment("My attachment", is);
+        }
       } catch (Exception e) {
         System.out.println("Exception while taking screenshot " + e.getMessage());
       }
@@ -79,6 +90,12 @@ public class BaseConfig {
         FileUtils.copyFile(source, new File("./Screenshots/" + result.getName() + ".png"));
         this.saveScreenshot(result.getName(), driver);
         System.out.println("Screenshot taken");
+        
+        Allure.addAttachment("My attachment", "My attachment content");
+        Path content = Paths.get("path-to-my-attachment-contnet");
+        try (InputStream is = Files.newInputStream(content)) {
+            Allure.addAttachment("My attachment", is);
+        }
       } catch (Exception e) {
         System.out.println("Exception while taking screenshot " + e.getMessage());
       }
@@ -92,6 +109,12 @@ public class BaseConfig {
         FileUtils.copyFile(source, new File("./Screenshots/" + result.getName() + ".png"));
         this.saveScreenshot(result.getName(), driver);
         System.out.println("Screenshot taken");
+        
+        Allure.addAttachment("My attachment", "My attachment content");
+        Path content = Paths.get("path-to-my-attachment-contnet");
+        try (InputStream is = Files.newInputStream(content)) {
+            Allure.addAttachment("My attachment", is);
+        }
       } catch (Exception e) {
         System.out.println("Exception while taking screenshot " + e.getMessage());
       }

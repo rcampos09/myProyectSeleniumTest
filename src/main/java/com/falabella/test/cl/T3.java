@@ -12,9 +12,9 @@ import io.qameta.allure.Description;
 import io.qameta.allure.Step;
 import io.qameta.allure.Story;
 
-public class T1 extends BaseConfig implements IHookable {
+public class T3 extends BaseConfig implements IHookable {
 
-  @Test(dataProvider = "ProductFalabella", 
+  @Test(dataProvider = "Product3Falabella", 
       dataProviderClass = IntegratedDataProvider.class)
   @Story("Sprint 20")
   @Step("Type {product.Sku()}")

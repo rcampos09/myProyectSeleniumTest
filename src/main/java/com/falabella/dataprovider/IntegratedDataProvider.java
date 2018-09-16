@@ -28,4 +28,15 @@ public class IntegratedDataProvider extends BaseConfig {
             Product.class);
     return new Object[][] {{product}};
   }
+  
+  @DataProvider
+  public static Object[][] Product3Falabella() {
+    Gson gson = new Gson();
+    Product product =
+        gson.fromJson(
+            FileDataProvider.asString(
+                String.format("src/test/resources/cl/product3.json")),
+            Product.class);
+    return new Object[][] {{product}};
+  }
 }
