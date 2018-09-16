@@ -1,8 +1,6 @@
 package com.falabella.utils;
 
-import org.joda.time.DateTime;
 import io.codearte.jfairy.Fairy;
-import io.codearte.jfairy.producer.payment.CreditCard;
 import io.codearte.jfairy.producer.person.Person;
 import io.codearte.jfairy.producer.person.Person.Sex;
 
@@ -12,7 +10,6 @@ public class DataFalabella {
 
     Fairy fairy = Fairy.create();
     Person person = fairy.person();
-    CreditCard creditCard = fairy.creditCard();
 
     // Personal details
     String firstName = person.firstName();
@@ -25,7 +22,7 @@ public class DataFalabella {
     String password = person.password();
     String passportNumber = person.passportNumber();
     String telephoneNumber = person.telephoneNumber();
-
+    
     System.out.println(firstName);
     System.out.println(lastName);
     System.out.println(middleName);
@@ -36,7 +33,6 @@ public class DataFalabella {
     System.out.println(password);
     System.out.println(passportNumber);
     System.out.println(telephoneNumber);
-
   }
 }
 
