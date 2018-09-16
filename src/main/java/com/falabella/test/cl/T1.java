@@ -1,6 +1,7 @@
 package com.falabella.test.cl;
 
 import org.testng.Assert;
+import org.testng.IHookable;
 import org.testng.annotations.Test;
 import com.falabella.config.BaseConfig;
 import com.falabella.dataprovider.IntegratedDataProvider;
@@ -9,7 +10,7 @@ import com.falabella.pages.cl.HomePage;
 import com.falabella.pages.cl.PDPPage;
 import io.qameta.allure.Description;
 
-public class T1 extends BaseConfig {
+public class T1 extends BaseConfig implements IHookable {
 
   @Test(dataProvider = "ProductFalabella", dataProviderClass = IntegratedDataProvider.class)
   @Description("Searh Product in Home")

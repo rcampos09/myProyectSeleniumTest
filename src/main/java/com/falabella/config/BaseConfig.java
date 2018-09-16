@@ -9,6 +9,7 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.testng.IHookCallBack;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -40,6 +41,19 @@ public class BaseConfig {
     }
     return driver;
   }
+  
+  @Attachment(value = "Screenshot of {0}", type = "image/png")
+  public byte[] saveScreenshot(String name, WebDriver driver) {
+      return (byte[]) ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+  }
+
+  public void run(IHookCallBack iHookCallBack, ITestResult iTestResult) {
+      iHookCallBack.runTestMethod(iTestResult);
+      if (iTestResult.getThrowable() != null) {
+          this.saveScreenshot(iTestResult.getName(), driver);
+          
+      }
+  }
 
   @AfterMethod
   public void closeDriver(ITestResult result) {
@@ -50,6 +64,7 @@ public class BaseConfig {
         // Call method to capture screenshot
         File source = ts.getScreenshotAs(OutputType.FILE);
         FileUtils.copyFile(source, new File("./Screenshots/" + result.getName() + ".png"));
+        this.saveScreenshot(result.getName(), driver);
         System.out.println("Screenshot taken");
       } catch (Exception e) {
         System.out.println("Exception while taking screenshot " + e.getMessage());
@@ -57,11 +72,12 @@ public class BaseConfig {
     }
     if (ITestResult.SUCCESS == result.getStatus()) {
       try {
-        // Create refernce of TakesScreenshot
+        // Create    of TakesScreenshot
         TakesScreenshot ts = (TakesScreenshot) driver;
         // Call method to capture screenshot
         File source = ts.getScreenshotAs(OutputType.FILE);
         FileUtils.copyFile(source, new File("./Screenshots/" + result.getName() + ".png"));
+        this.saveScreenshot(result.getName(), driver);
         System.out.println("Screenshot taken");
       } catch (Exception e) {
         System.out.println("Exception while taking screenshot " + e.getMessage());
@@ -69,20 +85,17 @@ public class BaseConfig {
     }
     if (ITestResult.SKIP == result.getStatus()) {
       try {
-        // Create refernce of TakesScreenshot
+        // Create reference of TakesScreenshot
         TakesScreenshot ts = (TakesScreenshot) driver;
         // Call method to capture screenshot
         File source = ts.getScreenshotAs(OutputType.FILE);
         FileUtils.copyFile(source, new File("./Screenshots/" + result.getName() + ".png"));
+        this.saveScreenshot(result.getName(), driver);
         System.out.println("Screenshot taken");
       } catch (Exception e) {
         System.out.println("Exception while taking screenshot " + e.getMessage());
       }
     }
     driver.quit();
-  }
-  @Attachment(value = "Screenshot at failure:", type = "image/png")
-  private byte[] takeScreenShot(WebDriver webDriver) {
-  return ((TakesScreenshot) webDriver).getScreenshotAs(OutputType.BYTES);
   }
 }
