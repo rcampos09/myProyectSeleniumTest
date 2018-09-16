@@ -6,11 +6,13 @@ import java.net.URI;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import io.qameta.allure.Attachment;
 
 public class BaseConfig {
 
@@ -78,5 +80,9 @@ public class BaseConfig {
       }
     }
     driver.quit();
+  }
+  @Attachment(value = "Screenshot at failure:", type = "image/png")
+  private byte[] takeScreenShot(WebDriver webDriver) {
+  return ((TakesScreenshot) webDriver).getScreenshotAs(OutputType.BYTES);
   }
 }
