@@ -5,6 +5,7 @@
     <classes>
       <class name="com.falabella.test.cl.T1"/>
       <class name="com.falabella.test.cl.T2"/>
+      <class name="com.falabella.test.cl.T3"/>
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->
