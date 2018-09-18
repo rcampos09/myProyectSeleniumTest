@@ -9,7 +9,7 @@ public class PropertyManager {
   private static PropertyManager instance;
   private static final Object lock = new Object();
   private static String propertyFilePath =
-      System.getProperty("user.dir") + "/src/test/resources/environment.properties";
+      System.getProperty("user.dir") + "/allure-results/environment.properties";
   private static String url;
   
   private static String propertyFilePath2 =

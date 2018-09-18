@@ -4,10 +4,6 @@
     "matchedStatuses": ["skipped"]
   },
   {
-    "name": "Infrastructure problems",
-    "matchedStatuses": ["broken", "failed"]
-  },
-  {
     "name": "Outdated tests",
     "matchedStatuses": ["broken"]
   },
