@@ -20,7 +20,7 @@ public class BaseConfig {
   @BeforeMethod
   public RemoteWebDriver getDriver() throws Exception {
     if (driver == null) {
-      DesiredCapabilities browser = new DesiredCapabilities();
+      DesiredCapabilities browser = new DesiredCapabilities(); 
       browser.setBrowserName("chrome");
       browser.setVersion("66.0");
       browser.setCapability("enableVNC", true);

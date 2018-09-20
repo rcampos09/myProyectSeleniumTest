@@ -41,7 +41,7 @@ public class Listener extends BaseConfig implements ITestListener {
     System.out
         .println("I am in onTestFailure method " + getTestMethodName(iTestResult) + " failed");
     Object testClass = iTestResult.getInstance();
-    // Allure ScreenShotRobot and SaveTestLog
+    // Allure ScreenShotRobot and SaveTestLog 
     try {
       RemoteWebDriver driver = ((BaseConfig) testClass).getDriver();
       if (driver instanceof RemoteWebDriver) {
