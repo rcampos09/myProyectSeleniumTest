@@ -3,16 +3,26 @@ package com.falabella.config;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 import io.qameta.allure.Attachment;
 
-
 public class Listener extends BaseConfig implements ITestListener {
 
   private static String getTestMethodName(ITestResult iTestResult) {
     return iTestResult.getMethod().getConstructorOrMethod().getName();
+  }
+
+  @Attachment(value = "Page screenshot", type = "image/png")
+  public byte[] saveScreenshotPNG(WebDriver driver) {
+    return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+  }
+
+  @Attachment(value = "{0}", type = "text/plain")
+  private static String saveTextLog(String message) {
+    return message;
   }
 
   @Override
@@ -24,18 +34,6 @@ public class Listener extends BaseConfig implements ITestListener {
   public void onTestSuccess(ITestResult iTestResult) {
     System.out
         .println("I am in onTestSuccess method " + getTestMethodName(iTestResult) + " succeed");
-    Object testClass = iTestResult.getInstance();
-    try {
-      WebDriver driver = ((BaseConfig) testClass).getDriver();
-      if (driver instanceof WebDriver) {
-        System.out.println("Screenshot capture for test case: " + getTestMethodName(iTestResult));
-        saveScreenshotPNG(driver);
-      } else {
-        System.out.println("Screenshot capture error  in System");
-      }
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
   }
 
   @Override
@@ -43,17 +41,22 @@ public class Listener extends BaseConfig implements ITestListener {
     System.out
         .println("I am in onTestFailure method " + getTestMethodName(iTestResult) + " failed");
     Object testClass = iTestResult.getInstance();
+    // Allure ScreenShotRobot and SaveTestLog 
     try {
-      WebDriver driver = ((BaseConfig) testClass).getDriver();
-      if (driver instanceof WebDriver) {
-        System.out.println("Screenshot capture for test case: " + getTestMethodName(iTestResult));
+      RemoteWebDriver driver = ((BaseConfig) testClass).getDriver();
+      if (driver instanceof RemoteWebDriver) {
+        System.out.println("Screenshot capture for test case : " + getTestMethodName(iTestResult));
         saveScreenshotPNG(driver);
       } else {
-        System.out.println("Screenshot capture error in System");
+        System.out
+            .println("Error Screenshot capture for test case : " + getTestMethodName(iTestResult));
       }
     } catch (Exception e) {
+      System.out.println("Error saveScreenshotPNG Method");
       e.printStackTrace();
     }
+    // Save a log on allure.
+    saveTextLog(getTestMethodName(iTestResult) + " failed and screenshot taken!");
   }
 
   @Override
@@ -76,10 +79,5 @@ public class Listener extends BaseConfig implements ITestListener {
   @Override
   public void onFinish(ITestContext iTestContext) {
     System.out.println("I am in onFinish method " + iTestContext.getName());
-  }
-
-  @Attachment(value = "Page screenshot", type = "image/png")
-  public byte[] saveScreenshotPNG(WebDriver driver) {
-    return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
   }
 }

@@ -6,7 +6,9 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Listeners;
 
+@Listeners(com.falabella.config.Listener.class)
 public class BaseConfig {
 
   public RemoteWebDriver driver;
@@ -18,7 +20,7 @@ public class BaseConfig {
   @BeforeMethod
   public RemoteWebDriver getDriver() throws Exception {
     if (driver == null) {
-      DesiredCapabilities browser = new DesiredCapabilities();
+      DesiredCapabilities browser = new DesiredCapabilities(); 
       browser.setBrowserName("chrome");
       browser.setVersion("66.0");
       browser.setCapability("enableVNC", true);
