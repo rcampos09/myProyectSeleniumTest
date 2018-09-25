@@ -72,9 +72,6 @@
 					<suiteXmlFiles>
 						<suiteXmlFile>testng.xml</suiteXmlFile>
 					</suiteXmlFiles>
-					<argLine>
-						-javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
-					</argLine>
 				</configuration>
 				<dependencies>
 					<!-- https://mvnrepository.com/artifact/org.aspectj/aspectjweaver -->
