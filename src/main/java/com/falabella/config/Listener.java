@@ -7,6 +7,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
+import com.assertthat.selenium_shutterbug.core.Shutterbug;
 import io.qameta.allure.Attachment;
 
 public class Listener extends BaseConfig implements ITestListener {
@@ -34,6 +35,24 @@ public class Listener extends BaseConfig implements ITestListener {
   public void onTestSuccess(ITestResult iTestResult) {
     System.out
         .println("I am in onTestSuccess method " + getTestMethodName(iTestResult) + " succeed");
+    Object testClass = iTestResult.getInstance();
+    // Allure ScreenShotRobot and SaveTestLog 
+    try {
+      RemoteWebDriver driver = ((BaseConfig) testClass).getDriver();
+      if (driver instanceof RemoteWebDriver) {
+        System.out.println("Screenshot capture for test case : " + getTestMethodName(iTestResult));
+        saveScreenshotPNG(driver);
+        Shutterbug.shootPage(driver).save("./screenshots/");
+      } else {
+        System.out
+            .println("Error Screenshot capture for test case : " + getTestMethodName(iTestResult));
+      }
+    } catch (Exception e) {
+      System.out.println("Error saveScreenshotPNG Method");
+      e.printStackTrace();
+    }
+    // Save a log on allure.
+    saveTextLog(getTestMethodName(iTestResult) + " failed and screenshot taken!");
   }
 
   @Override
@@ -47,6 +66,7 @@ public class Listener extends BaseConfig implements ITestListener {
       if (driver instanceof RemoteWebDriver) {
         System.out.println("Screenshot capture for test case : " + getTestMethodName(iTestResult));
         saveScreenshotPNG(driver);
+        Shutterbug.shootPage(driver).save("./screenshots/");
       } else {
         System.out
             .println("Error Screenshot capture for test case : " + getTestMethodName(iTestResult));
