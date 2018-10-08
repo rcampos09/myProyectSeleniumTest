@@ -9,6 +9,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
 
 @Listeners(com.falabella.config.Listener.class)
+
 public class BaseConfig {
 
   public RemoteWebDriver driver;

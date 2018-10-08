@@ -5,11 +5,11 @@ import java.io.IOException;
 import java.util.Properties;
 
 public class PropertyManager {
-
+  
   private static PropertyManager instance;
   private static final Object lock = new Object();
   private static String propertyFilePath =
-      System.getProperty("user.dir") + "/allure-results/environment.properties";
+      System.getProperty("user.dir") + "/src/test/resources/country.properties";
   private static String url;
   
   private static String propertyFilePath2 =
@@ -49,7 +49,7 @@ public class PropertyManager {
     }
 
     // Get properties from configuration.properties
-    url = prop.getProperty("url");
+    url = prop.getProperty(System.getProperty("dlx.country"));
     // Get properties from configuration.properties
     selenoid = prop.getProperty("selenoid");
     port = prop.getProperty("port");
