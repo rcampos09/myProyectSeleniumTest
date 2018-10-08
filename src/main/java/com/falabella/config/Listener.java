@@ -91,6 +91,7 @@ public class Listener extends BaseConfig implements ITestListener {
   @Override
   public void onStart(ITestContext iTestContext) {
     System.out.println("Start Falabella Country: "+System.getProperty("dlx.country"));
+    System.out.println("Start Falabella Country: "+System.getProperty("dlx.browser"));
     System.out.println("I am in onStart method " + iTestContext.getName());
   }
 
