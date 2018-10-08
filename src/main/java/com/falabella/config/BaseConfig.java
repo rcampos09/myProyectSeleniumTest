@@ -17,14 +17,15 @@ public class BaseConfig {
   String urlPage = PropertyManager.getInstance().getURL();
   String urlSelenoid = PropertyManager.getInstance().getSelenoid();
   String portSelenoid = PropertyManager.getInstance().getPort();
+  String versionBrowser = PropertyManager.getInstance().getBrowser();
 
   @BeforeMethod
   public RemoteWebDriver getDriver() throws Exception {
     if (driver == null) {
       DesiredCapabilities browser = new DesiredCapabilities(); 
-      browser.setBrowserName("chrome");
-      browser.setVersion("66.0");
-      browser.setCapability("enableVNC", true);
+      browser.setBrowserName(System.getProperty("dlx.browser"));
+      browser.setVersion(versionBrowser);
+      //browser.setCapability("enableVNC", true);
       try {
         driver = new RemoteWebDriver(URI.create(urlSelenoid + portSelenoid).toURL(), browser);
         driver.manage().window().fullscreen();

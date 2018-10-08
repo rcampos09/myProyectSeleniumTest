@@ -16,6 +16,10 @@ public class PropertyManager {
       System.getProperty("user.dir") + "/src/test/resources/selenoid.properties";
   private static String selenoid;
   private static String port;
+  
+  private static String propertyFilePath3 =
+      System.getProperty("user.dir") + "/src/test/resources/browser.properties";
+  private static String versionBrowser;
 
   // Create a Singleton instance. We need only one instance of Property Manager.
   public static PropertyManager getInstance() {
@@ -47,12 +51,21 @@ public class PropertyManager {
     } catch (IOException e) {
       System.out.println("Configuration properties file cannot be found propertyFilePath");
     }
+    
+    try {
+      // prop.load(this.getClass().getClassLoader().getResourceAsStream("browser.properties"));
+      prop.load(new FileInputStream(propertyFilePath3));
+    } catch (IOException e) {
+      System.out.println("Configuration properties file cannot be found propertyFilePath");
+    }
 
     // Get properties from configuration.properties
     url = prop.getProperty(System.getProperty("dlx.country"));
     // Get properties from configuration.properties
     selenoid = prop.getProperty("selenoid");
     port = prop.getProperty("port");
+    // Get properties from configuration.properties
+    versionBrowser = prop.getProperty(System.getProperty("dlx.browser"));
   }
 
   public String getURL() {
@@ -63,5 +76,8 @@ public class PropertyManager {
   }
   public String getPort() {
     return port;
+  }
+  public String getBrowser() {
+    return versionBrowser;
   }
 }
