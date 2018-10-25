@@ -3,9 +3,9 @@
 <suite name="Suite Test Falabella">
 	<test name="Test Case Regression">
 		<classes>
-			<class name="com.falabella.test.cl.T1" />
-			<class name="com.falabella.test.cl.T2" />
-			<class name="com.falabella.test.cl.T3" />
+			<class name="com.falabella.test.web.T1" />
+			<class name="com.falabella.test.web.T2" />
+			<class name="com.falabella.test.web.T3" />
 		</classes>
 	</test> <!-- Test -->
 </suite> <!-- Suite -->
