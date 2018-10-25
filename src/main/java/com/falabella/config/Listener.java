@@ -1,5 +1,7 @@
 package com.falabella.config;
 
+import java.util.concurrent.TimeUnit;
+import org.influxdb.dto.Point;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -51,6 +53,8 @@ public class Listener extends BaseConfig implements ITestListener {
     }
     // Save a log on allure.
     saveTextLog(getTestMethodName(iTestResult) + " failed and screenshot taken!");
+    // Save InfluxDb
+    this.sendTestMethodStatus(iTestResult, "PASS");
   }
 
   @Override
@@ -74,12 +78,16 @@ public class Listener extends BaseConfig implements ITestListener {
     }
     // Save a log on allure.
     saveTextLog(getTestMethodName(iTestResult) + " failed and screenshot taken!");
+    // Save InfluxDb
+    this.sendTestMethodStatus(iTestResult, "FAIL");
   }
 
   @Override
   public void onTestSkipped(ITestResult iTestResult) {
     System.out
         .println("I am in onTestSkipped method " + getTestMethodName(iTestResult) + " skipped");
+    // Save InfluxDb
+    this.sendTestMethodStatus(iTestResult, "SKIPPED");
   }
 
   @Override
@@ -90,13 +98,38 @@ public class Listener extends BaseConfig implements ITestListener {
 
   @Override
   public void onStart(ITestContext iTestContext) {
-    System.out.println("Start Falabella Country: "+System.getProperty("dlx.country"));
-    System.out.println("Start Falabella Country: "+System.getProperty("dlx.browser"));
+    System.out.println("Start Falabella Country: " + System.getProperty("dlx.country"));
+    System.out.println("Start Falabella Country: " + System.getProperty("dlx.browser"));
     System.out.println("I am in onStart method " + iTestContext.getName());
   }
 
   @Override
   public void onFinish(ITestContext iTestContext) {
     System.out.println("I am in onFinish method " + iTestContext.getName());
+    // Save InfluxDb
+    this.sendTestClassStatus(iTestContext);
+  }
+
+  private void sendTestMethodStatus(ITestResult iTestResult, String status) {
+    Point point = Point.measurement("testmethod")
+        .time(System.currentTimeMillis(), TimeUnit.MILLISECONDS)
+        .tag("testclass", iTestResult.getTestClass().getName())
+        .tag("name", iTestResult.getName())
+        .tag("description", iTestResult.getMethod().getDescription())
+        .tag("result", status)
+        .tag("country",System.getProperty("dlx.country"))
+        .tag("browser",System.getProperty("dlx.browser"))
+        .addField("duration", (iTestResult.getEndMillis() - iTestResult.getStartMillis())).build();
+    ResultSender.send(point);
+  }
+
+  private void sendTestClassStatus(ITestContext iTestContext) {
+    Point point =
+        Point.measurement("testclass").time(System.currentTimeMillis(), TimeUnit.MILLISECONDS)
+            .tag("name", iTestContext.getAllTestMethods()[0].getTestClass().getName())
+            .addField("duration",
+                (iTestContext.getEndDate().getTime() - iTestContext.getStartDate().getTime()))
+            .build();
+    ResultSender.send(point);
   }
 }

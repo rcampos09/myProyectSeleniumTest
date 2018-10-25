@@ -14,8 +14,8 @@
 	<properties>
 		<aspectj.version>1.8.10</aspectj.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		 <country>${dlx.country}</country>
-        <suiteFile>src\main\java\com\falabella\suite\${country}.xml</suiteFile>
+		<country>${dlx.country}</country>
+		<suiteFile>src\main\java\com\falabella\suite\${country}.xml</suiteFile>
 	</properties>
 
 	<dependencies>
@@ -26,6 +26,7 @@
 			<version>6.14.3</version>
 			<scope>compile</scope>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
 			<artifactId>selenium-java</artifactId>
@@ -48,6 +49,12 @@
 			<groupId>io.qameta.allure</groupId>
 			<artifactId>allure-testng</artifactId>
 			<version>2.6.0</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.influxdb/influxdb-java -->
+		<dependency>
+			<groupId>org.influxdb</groupId>
+			<artifactId>influxdb-java</artifactId>
+			<version>2.12</version>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/com.assertthat/selenium-shutterbug -->
 		<dependency>

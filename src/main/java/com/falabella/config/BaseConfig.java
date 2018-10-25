@@ -22,13 +22,15 @@ public class BaseConfig {
   @BeforeMethod
   public RemoteWebDriver getDriver() throws Exception {
     if (driver == null) {
-      DesiredCapabilities browser = new DesiredCapabilities(); 
+
+      DesiredCapabilities browser = new DesiredCapabilities();
+      
       browser.setBrowserName(System.getProperty("dlx.browser"));
       browser.setVersion(versionBrowser);
-      //browser.setCapability("enableVNC", true);
+      browser.setCapability("enableVNC", true);
       try {
         driver = new RemoteWebDriver(URI.create(urlSelenoid + portSelenoid).toURL(), browser);
-        driver.manage().window().fullscreen();
+        driver.manage().window().maximize();
         driver.get(urlPage);
       } catch (MalformedURLException e) {
         System.out.println("error " + e.getMessage());

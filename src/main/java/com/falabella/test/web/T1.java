@@ -1,4 +1,4 @@
-package com.falabella.test.cl;
+package com.falabella.test.web;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -13,9 +13,10 @@ import io.qameta.allure.Story;
 public class T1 extends BaseConfig {
 
   @Test(dataProvider = "ProductFalabella", 
-      dataProviderClass = IntegratedDataProvider.class)
+      dataProviderClass = IntegratedDataProvider.class,
+      description = "Searh Product in Home 1")
   @Story("Sprint 20")
-  @Description("Searh Product in Home")
+  @Description("Searh Product in Home 1")
   public void SearhProductInHomePage1(Product product) {
     HomePage homePage = new HomePage(driver);
     homePage.SearhSku(product.Sku());
