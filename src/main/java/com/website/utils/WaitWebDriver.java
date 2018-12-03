@@ -1,4 +1,4 @@
-package com.falabella.utils;
+package com.website.utils;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;

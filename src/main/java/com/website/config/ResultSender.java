@@ -1,4 +1,4 @@
-package com.falabella.config;
+package com.website.config;
 
 import org.influxdb.InfluxDB;
 import org.influxdb.InfluxDBFactory;

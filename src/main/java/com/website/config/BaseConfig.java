@@ -1,4 +1,4 @@
-package com.falabella.config;
+package com.website.config;
 
 import java.net.MalformedURLException;
 import java.net.URI;
@@ -8,7 +8,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
 
-@Listeners(com.falabella.config.Listener.class)
+@Listeners(com.website.config.Listener.class)
 
 public class BaseConfig {
 
