@@ -1,4 +1,4 @@
-package com.falabella.config;
+package com.website.config;
 
 import java.util.concurrent.TimeUnit;
 import org.influxdb.dto.Point;

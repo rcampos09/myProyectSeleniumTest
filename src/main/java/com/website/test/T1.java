@@ -1,12 +1,12 @@
-package com.falabella.test.web;
+package com.website.test;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import com.falabella.config.BaseConfig;
-import com.falabella.dataprovider.IntegratedDataProvider;
-import com.falabella.entities.Product;
-import com.falabella.pages.cl.HomePage;
-import com.falabella.pages.cl.PDPPage;
+import com.website.config.BaseConfig;
+import com.website.dataprovider.IntegratedDataProvider;
+import com.website.entities.Product;
+import com.website.pages.cl.HomePage;
+import com.website.pages.cl.PDPPage;
 import io.qameta.allure.Description;
 import io.qameta.allure.Story;
 

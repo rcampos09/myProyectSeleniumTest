@@ -1,10 +1,10 @@
-package com.falabella.utils;
+package com.website.utils;
 
 import io.codearte.jfairy.Fairy;
 import io.codearte.jfairy.producer.person.Person;
 import io.codearte.jfairy.producer.person.Person.Sex;
 
-public class DataFalabella {
+public class DataWebSiteFake {
 
   public static void main(String arg[]) {
 
