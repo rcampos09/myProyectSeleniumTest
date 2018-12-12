@@ -38,11 +38,6 @@ public class Listener extends BaseConfig implements ITestListener {
 
     // ElasticSearch ResultSender
     // this.testStatus = new TestStatus();
-
-    Response response = given().get(urlPage);
-    int statusCode = response.getStatusCode();
-    StatusCodeWebSite site = new StatusCodeWebSite();
-    site.testStatusUrl(statusCode);
   }
 
   @Override
