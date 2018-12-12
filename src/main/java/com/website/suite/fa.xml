@@ -3,9 +3,9 @@
 <suite name="Suite Test website FA">
 	<test name="Test Case Regression">
 		<classes>
-			<class name="com.website.test.fa.F1" />
-			<class name="com.website.test.fa.F2" />
-			<class name="com.website.test.fa.F3" />
+			<class name="com.website.test.fa.AUT" />
+			<class name="com.website.test.fa.AUT2" />
+			<class name="com.website.test.fa.AUT3" />
 		</classes>
 	</test> <!-- Test -->
 </suite> <!-- Suite -->
