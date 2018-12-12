@@ -1,5 +1,7 @@
 package com.website.config;
 
+import static io.restassured.RestAssured.given;
+import java.time.LocalDateTime;
 import java.util.concurrent.TimeUnit;
 import org.influxdb.dto.Point;
 import org.openqa.selenium.OutputType;
@@ -10,8 +12,11 @@ import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 import io.qameta.allure.Attachment;
+import io.restassured.response.Response;
 
 public class Listener extends BaseConfig implements ITestListener {
+
+  // private TestStatus testStatus;
 
   private static String getTestMethodName(ITestResult iTestResult) {
     return iTestResult.getMethod().getConstructorOrMethod().getName();
@@ -30,6 +35,14 @@ public class Listener extends BaseConfig implements ITestListener {
   @Override
   public void onTestStart(ITestResult iTestResult) {
     System.out.println("I am in onTestStart method " + getTestMethodName(iTestResult) + " start");
+
+    // ElasticSearch ResultSender
+    // this.testStatus = new TestStatus();
+
+    Response response = given().get(urlPage);
+    int statusCode = response.getStatusCode();
+    StatusCodeWebSite site = new StatusCodeWebSite();
+    site.testStatusUrl(statusCode);
   }
 
   @Override
@@ -52,9 +65,11 @@ public class Listener extends BaseConfig implements ITestListener {
       e.printStackTrace();
     }
     // Save a log on allure.
-    saveTextLog(getTestMethodName(iTestResult) + " failed and screenshot taken!");
+    saveTextLog(getTestMethodName(iTestResult) + "Screenshot taken!");
     // Save InfluxDb
-    this.sendTestMethodStatus(iTestResult, "PASS");
+    // this.sendTestMethodStatus(iTestResult, "PASS");
+    // ElasticSearch
+    // this.sendStatus(iTestResult, "SUCCESS");
   }
 
   @Override
@@ -79,7 +94,9 @@ public class Listener extends BaseConfig implements ITestListener {
     // Save a log on allure.
     saveTextLog(getTestMethodName(iTestResult) + " failed and screenshot taken!");
     // Save InfluxDb
-    this.sendTestMethodStatus(iTestResult, "FAIL");
+    // this.sendTestMethodStatus(iTestResult, "FAIL");
+    // ElasticSearch
+    // this.sendStatus(iTestResult, "FAIL");
   }
 
   @Override
@@ -87,7 +104,9 @@ public class Listener extends BaseConfig implements ITestListener {
     System.out
         .println("I am in onTestSkipped method " + getTestMethodName(iTestResult) + " skipped");
     // Save InfluxDb
-    this.sendTestMethodStatus(iTestResult, "SKIPPED");
+    // this.sendTestMethodStatus(iTestResult, "SKIPPED");
+    // ElasticSearch
+    // this.sendStatus(iTestResult, "SKIPPED");
   }
 
   @Override
@@ -107,8 +126,9 @@ public class Listener extends BaseConfig implements ITestListener {
   public void onFinish(ITestContext iTestContext) {
     System.out.println("I am in onFinish method " + iTestContext.getName());
     // Save InfluxDb
-    this.sendTestClassStatus(iTestContext);
+    // this.sendTestClassStatus(iTestContext);
   }
+
 
   private void sendTestMethodStatus(ITestResult iTestResult, String status) {
     Point point = Point.measurement("testmethod")
@@ -117,10 +137,10 @@ public class Listener extends BaseConfig implements ITestListener {
         .tag("name", iTestResult.getName())
         .tag("description", iTestResult.getMethod().getDescription())
         .tag("result", status)
-        .tag("country",System.getProperty("dlx.country"))
-        .tag("browser",System.getProperty("dlx.browser"))
+        .tag("country", System.getProperty("dlx.country"))
+        .tag("browser", System.getProperty("dlx.browser"))
         .addField("duration", (iTestResult.getEndMillis() - iTestResult.getStartMillis())).build();
-    ResultSender.send(point);
+    ResultSenderInfluxDB.send(point);
   }
 
   private void sendTestClassStatus(ITestContext iTestContext) {
@@ -130,6 +150,16 @@ public class Listener extends BaseConfig implements ITestListener {
             .addField("duration",
                 (iTestContext.getEndDate().getTime() - iTestContext.getStartDate().getTime()))
             .build();
-    ResultSender.send(point);
+    ResultSenderInfluxDB.send(point);
   }
+
+  /*
+  private void sendStatus(ITestResult iTestResult, String status) {
+    this.testStatus.setTestClass(iTestResult.getTestClass().getName());
+    this.testStatus.setDescription(iTestResult.getMethod().getDescription());
+    this.testStatus.setStatus(status);
+    this.testStatus.setExecutionDate(LocalDateTime.now().toString());
+    ResultSenderElasticSearch.send(this.testStatus);
+  }
+  */
 }

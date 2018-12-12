@@ -42,4 +42,16 @@ public class IntegratedDataProvider extends BaseConfig {
             Product.class);
     return new Object[][] {{product}};
   }
+  
+  @DataProvider
+  public static Object[][] Phone1Wom() {
+    Gson gson = new Gson();
+    String country = System.getProperty("dlx.country");
+    Product product =
+        gson.fromJson(
+            FileDataProvider.asString(
+                String.format("src/test/resources/%s/product.json", country)),
+            Product.class);
+    return new Object[][] {{product}};
+  }
 }

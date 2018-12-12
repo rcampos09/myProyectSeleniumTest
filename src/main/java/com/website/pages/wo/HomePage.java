@@ -1,4 +1,4 @@
-package com.website.pages.cl;
+package com.website.pages.wo;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -12,11 +12,11 @@ public class HomePage extends BaseConfig {
     PageFactory.initElements(driver, this);
   }
 
-  @FindBy(name = "Ntt")
-  public WebElement searh_Inpt;
+  @FindBy(xpath = "(//section[@class='menu_mobile menu_mobile--active'or @class='menu_wrapper']//a[@data-union='Equipos'])[1]")
+  public WebElement equipos_Btn_Link;
 
-  public void SearhSku(String sku) {
-    searh_Inpt.sendKeys(sku);
-    searh_Inpt.submit();
+  public CellularEquipmentPage click_Equipos_menu() {
+    equipos_Btn_Link.click();
+    return new CellularEquipmentPage(driver);
   }
 }
