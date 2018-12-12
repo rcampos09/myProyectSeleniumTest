@@ -10,7 +10,7 @@ import com.website.pages.fa.PDPPage;
 import io.qameta.allure.Description;
 import io.qameta.allure.Story;
 
-public class AUT3 extends BaseConfig {
+public class AUT4 extends BaseConfig {
 
   @Test(dataProvider = "Product3Falabella", 
       dataProviderClass = IntegratedDataProvider.class,
