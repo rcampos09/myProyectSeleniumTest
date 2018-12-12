@@ -24,6 +24,13 @@ public class BaseConfig {
     if (driver == null) {
 
       DesiredCapabilities browser = new DesiredCapabilities();
+      
+      /*
+      Response response = given().get(urlPage);
+      int statusCode = response.getStatusCode();
+      StatusCodeWebSite site = new StatusCodeWebSite();
+      site.testStatusUrl(statusCode);
+      */
 
       browser.setBrowserName(System.getProperty("dlx.browser"));
       browser.setVersion(versionBrowser);
