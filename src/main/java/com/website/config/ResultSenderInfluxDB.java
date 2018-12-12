@@ -4,7 +4,7 @@ import org.influxdb.InfluxDB;
 import org.influxdb.InfluxDBFactory;
 import org.influxdb.dto.Point;
 
-public class ResultSender {
+public class ResultSenderInfluxDB {
 
   private static final InfluxDB INFLXUDB =
       InfluxDBFactory.connect("http://172.17.0.7:8086", "root", "root");

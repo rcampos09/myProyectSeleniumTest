@@ -24,11 +24,13 @@ public class BaseConfig {
     if (driver == null) {
 
       DesiredCapabilities browser = new DesiredCapabilities();
-      
+
       browser.setBrowserName(System.getProperty("dlx.browser"));
       browser.setVersion(versionBrowser);
+      browser.setCapability("name", urlPage + " Test:" + getClass().getSimpleName());
       browser.setCapability("enableVNC", true);
       try {
+
         driver = new RemoteWebDriver(URI.create(urlSelenoid + portSelenoid).toURL(), browser);
         driver.manage().window().maximize();
         driver.get(urlPage);
