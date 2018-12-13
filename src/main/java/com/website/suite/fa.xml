@@ -5,7 +5,7 @@
 		<classes>
 			<class name="com.website.test.fa.AUT" />
 			<class name="com.website.test.fa.AUT2" />
-			<class name="com.website.test.fa.AUT3" />
+			<class name="com.website.test.fa.AUT4" />
 		</classes>
 	</test> <!-- Test -->
 </suite> <!-- Suite -->
